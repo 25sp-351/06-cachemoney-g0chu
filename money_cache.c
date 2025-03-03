@@ -1,6 +1,8 @@
+#include "money_cache.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "money_cache.h"
+
 #include "money_conversion.h"
 
 #define MAX_BUFFER_SIZE 512

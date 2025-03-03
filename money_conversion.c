@@ -1,22 +1,22 @@
+#include "money_conversion.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "money_conversion.h"
 
 #define MAX_BUFFER_SIZE 512
 
-static const char *ones[] = {
-    "zero", "one", "two", "three", "four", "five", "six", "seven",
-    "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
-    "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
-};
+static const char *ones[] = {"zero",    "one",       "two",      "three",
+                             "four",    "five",      "six",      "seven",
+                             "eight",   "nine",      "ten",      "eleven",
+                             "twelve",  "thirteen",  "fourteen", "fifteen",
+                             "sixteen", "seventeen", "eighteen", "nineteen"};
 
-static const char *tens[] = {
-    "", "", "twenty", "thirty", "forty", "fifty",
-    "sixty", "seventy", "eighty", "ninety"
-};
+static const char *tens[] = {"",      "",      "twenty",  "thirty", "forty",
+                             "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-static void append_string(char *buffer, size_t *pos, size_t size, const char *str) {
+static void append_string(char *buffer, size_t *pos, size_t size,
+                          const char *str) {
     int written = snprintf(buffer + *pos, size - *pos, "%s", str);
     if (written > 0)
         *pos += (size_t)written;
@@ -100,11 +100,11 @@ void convert_money_to_text(int cents, char *buffer, size_t size) {
         snprintf(buffer, size, "negative values not supported");
         return;
     }
-    
-    buffer[0] = '\0';
-    size_t pos = 0;
-    
-    int dollars = cents / 100;
+
+    buffer[0]           = '\0';
+    size_t pos          = 0;
+
+    int dollars         = cents / 100;
     int remainder_cents = cents % 100;
 
     convert_number(dollars, buffer, &pos, size);
